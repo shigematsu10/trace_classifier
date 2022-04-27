@@ -38,6 +38,7 @@ class Image_process:
         dataset = np.delete(dataset, 0, 0)
         return dataset
 
+
     def image_save(self):
         dataset = self.resize_and_gather()
         image_num = dataset.shape[0]
@@ -45,9 +46,11 @@ class Image_process:
             image = array_to_img(dataset[id][0], scale = False)
             image.save_img(self.path_aug + f'{self.path_name}{id}.jpeg')
 
+
     def rotation(img):
         datagen = image.ImageDataGenerator(rotation_range=40)
         img_rotation = datagen.flow(dataset, batch_size=1)
+
 
 
 #<<<--------------------------------基本操作----------------------------------------------->>>
