@@ -14,6 +14,42 @@ def show_image(img):
     plt.show()
     plt.close()
 
+class Image_process:
+
+    def __init__(self, path_name):
+        self.path_name = path_name
+        self.path_origin = f'./images/red_{path_name}/'
+        self.path_aug = f'./images/red_{path_name}/aug/'
+
+
+    def resize_and_gather(self):
+        #path_name : draw or rain
+        if self.path_name == 'draw' :
+            image_num = 45
+        elif self.path_name == 'rain' :
+            image_num = 51
+
+        dataset = np.empty((1, 150, 100, 3))
+        for id in range(1, image_num) :
+            image = image.load_img(self.path_origin + f'{self.path_name}{id}.jpeg', target_size=(150, 100))
+            image = np.array(image)
+            image = image[np.newaxis, :, :, :]
+            dataset = np.append(dataset, image, axis=0)
+        dataset = np.delete(dataset, 0, 0)
+        return dataset
+
+    def image_save(self):
+        dataset = self.resize_and_gather()
+        image_num = dataset.shape[0]
+        for id in range(image_num):
+            image = array_to_img(dataset[id][0], scale = False)
+            image.save_img(self.path_aug + f'{self.path_name}{id}.jpeg')
+
+    def rotation(img):
+        datagen = image.ImageDataGenerator(rotation_range=40)
+        img_rotation = datagen.flow(dataset, batch_size=1)
+
+
 #<<<--------------------------------基本操作----------------------------------------------->>>
 #読み込む時点でresizeも行う
 img1 = image.load_img('./images/red_draw/draw0.jpeg', target_size=(150, 100))
