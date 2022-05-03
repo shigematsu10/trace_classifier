@@ -1,11 +1,6 @@
-import numpy as np
-import cv2
-import matplotlib.pyplot as plt
+from model.input_data import InputImageProc
 
 if __name__ == '__main__':
-
-    i=0
-    im_gray = cv2.imread('./images/red_rain/aug/rain1.jpg', cv2.IMREAD_GRAYSCALE)
-    #print(im_gray.shape)
-    cv2.imshow('gray', im_gray)
-    cv2.waitKey(0)
+    path_name_list = ['draw', 'rain']
+    input_proc = InputImageProc()
+    input_proc.create_tfds()

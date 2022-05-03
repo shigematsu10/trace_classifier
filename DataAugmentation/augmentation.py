@@ -17,7 +17,7 @@ class ImageProcess:
         if self.path_name == 'draw' :
             self.image_num = 45
         elif self.path_name == 'rain' :
-            self.image_num = 51
+            self.image_num = 55
 
 
     def resize_and_gather(self):
