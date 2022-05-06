@@ -8,9 +8,6 @@ from keras.utils import np_utils
 
 class CNN():
 
-    def __init__(self):
-        
-
     def cnn(self):
         model_cnn = Sequential()
         model_cnn.add(Conv2D(16, (3, 3), activation='relu', input_shape=(150, 100, 1)))
@@ -21,5 +18,5 @@ class CNN():
         model_cnn.add(keras.layers.Flatten())
         model_cnn.add(keras.layers.Dense(64, activation='relu'))
         model_cnn.add(keras.layers.Dense(2, activation='softmax'))
-        model_nn.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+        model_cnn.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
         return model_cnn

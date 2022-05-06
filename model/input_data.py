@@ -30,47 +30,49 @@ class InputImageProc:
             image_gray = cv2.imread(f'./images/red_rain/aug/rain{i}.jpeg', cv2.IMREAD_GRAYSCALE)
             cv2.imwrite(f'./datasets/gray/rain{i}.jpeg', image_gray)
 
+
 #ここにtrain, valid, testに分けてnpyファイルを保存するコードをかく
-    def create_dataset(self, first_time=False):
-        if first_time = True :
-            label_name_list = ['draw', 'rain']
-            dataset = np.empty((1, 150, 100), dtype='uint8')
-            
-            self.label_list = []
-            labels = [0] * self.draw_image_num
-            self.label_list.extend(labels)
-            labels = [1] * self.rain_image_num
-            self.label_list.extend(labels)
-            self.label_list = np.array(label_list)
-            print(self.label_list.shape)
-            np.save('./datasets/label_list.npy', self.label_list)
-        
-            for name in label_name_list :
-                if name == 'draw':
-                    img_num = self.draw_image_num
-                elif name == 'rain':
-                    img_num = self.rain_image_num
-                for i in range(img_num) :
-                    image_gray = cv2.imread(f'./datasets/gray/{name}{i}.jpeg',cv2.IMREAD_GRAYSCALE)
-                    image_gray = image_gray[np.newaxis, :, :]
-                    dataset = np.append(dataset, image_gray, axis=0)
-                    #print(dataset.shape)
-            self.dataset = np.delete(dataset, 0, 0)
-            print(self.dataset.shape)
-            np.save('./datasets/dataset.npy', self.dataset)
-        
-        else :
-            self.dataset = np.load('./datasets/dataset.npy')
-            self.label_list = np.load('./datasets/label_list.npy')
+    def create_dataset(self):
+        label_name_list = ['draw', 'rain']
+        dataset = np.empty((1, 150, 100), dtype='uint8')
+        self.label_list = []
+        labels = [0] * self.draw_image_num
+        self.label_list.extend(labels)
+        labels = [1] * self.rain_image_num
+        self.label_list.extend(labels)
+        self.label_list = np.array(label_list)
+        print(self.label_list.shape)
+        np.save('./datasets/label_list_origin.npy', self.label_list)
+        for name in label_name_list :
+            if name == 'draw':
+                img_num = self.draw_image_num
+            elif name == 'rain':
+                img_num = self.rain_image_num
+            for i in range(img_num) :
+                image_gray = cv2.imread(f'./datasets/gray/{name}{i}.jpeg',cv2.IMREAD_GRAYSCALE)
+                image_gray = image_gray[np.newaxis, :, :]
+                dataset = np.append(dataset, image_gray, axis=0)
+                #print(dataset.shape)
+        self.dataset = np.delete(dataset, 0, 0)
+        print(self.dataset.shape)
+        np.save('./datasets/dataset_origin.npy', self.dataset)
 
 
-    def shuffle_dataset(self):
-        input_data = self.dataset.tolist()
-        input_label = self.label_list.tolist()
-        p = list(zip(input_data, input_label))
+    def split_train_valid_test(self):
+        train_num = self.all_image_num * 0.8
+        valid_test_num = self.all_image_num * 0.1
+        train, valid_test = np.split(self.dataset, train_num, 0)
+        valid, test = np.split(valid_test, valid_test_num, 0)
+        return train, valid, test
+
+
+    def shuffle_dataset(self, img, label):
+        input_img = img.tolist()
+        input_label = label.tolist()
+        p = list(zip(input_img, input_label))
         random.shuffle(p)
-        input_data, input_label = zip(*p)
-        return input_data, input_label
+        input_img, input_label = zip(*p)
+        return input_img, input_label
 
 
     #def create_tfds(self, image):
