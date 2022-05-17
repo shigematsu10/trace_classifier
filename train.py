@@ -8,7 +8,7 @@ if __name__ == '__main__':
     train_img = np.load('./datasets/dataset.npy')
     train_label = np.load('./datasets/label_list.npy')
     input_proc = InputImageProc(dataset=train_img, label_list=train_label)
-    train_img, train_label = input_proc.shuffle_dataset()
+    #train_img, train_label = input_proc.shuffle_dataset()
     """
     valid = np.load('./datasets/valid/dataset.npy')
     valid_label = np.load('./datasets/valid/label_list.npy')
@@ -23,3 +23,5 @@ if __name__ == '__main__':
     create_model = CNN()
     cnn = create_model.cnn()
     cnn.fit(train_img, train_label, epochs=5)
+
+    cnn.save('./model/ckpt/')
