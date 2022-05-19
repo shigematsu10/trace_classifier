@@ -40,7 +40,7 @@ class InputImageProc:
         self.label_list.extend(labels)
         labels = [1] * self.rain_image_num
         self.label_list.extend(labels)
-        self.label_list = np.array(label_list)
+        self.label_list = np.array(self.label_list)
         print(self.label_list.shape)
         np.save('./datasets/label_list_origin.npy', self.label_list)
         for name in label_name_list :
@@ -62,8 +62,10 @@ class InputImageProc:
         train_num = self.all_image_num * 0.8
         valid_test_num = self.all_image_num * 0.1
         train, valid_test = np.split(self.dataset, train_num, 0)
+        train_label, valid_test_label = np.split(self.label_list, train_num, 0)
         valid, test = np.split(valid_test, valid_test_num, 0)
-        return train, valid, test
+        valid_label, test_label = np.split(valid_test_label, valid_test_num, 0)
+        return train, valid, test, train_label, valid_label, test_label
 
 
     def shuffle_dataset(self, img, label):
@@ -75,7 +77,6 @@ class InputImageProc:
         return input_img, input_label
 
 
-    #def create_tfds(self, image):
     def __call__(self):
         self.change_gray()
         self.create_dataset()

@@ -5,8 +5,8 @@ from model.input_data import InputImageProc
 from model.cnn import CNN
 
 if __name__ == '__main__':
-    train_img = np.load('./datasets/dataset.npy')
-    train_label = np.load('./datasets/label_list.npy')
+    train_img = np.load('./datasets/train/dataset.npy')
+    train_label = np.load('./datasets/train/label_list.npy')
     input_proc = InputImageProc(dataset=train_img, label_list=train_label)
     #train_img, train_label = input_proc.shuffle_dataset()
     """
