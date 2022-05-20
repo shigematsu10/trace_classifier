@@ -24,4 +24,5 @@ if __name__ == '__main__' :
     #test用データセット作成の必要あり
     train_img = np.load('./datasets/test/dataset.npy')
     train_label = np.load('./datasets/test/label_list.npy')
+    #評価コード
 
