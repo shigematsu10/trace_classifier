@@ -67,8 +67,10 @@ if __name__ == '__main__' :
         plot_image(i, predictions, test_label, test_img)
         plt.subplot(num_rows, 2*num_cols, 2*i+2)
         plot_value_array(i, predictions, test_label)
+    plt.savefig('./model_output_sapmle.png')
     plt.show()
     plt.close()
+    
 
 
 
