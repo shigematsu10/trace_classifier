@@ -10,7 +10,7 @@ Since there are no images of bloodstains, we created a pseudo-dataset using imag
 Like in the movie, we classify images with blood dripping (rain) and images with blood smudged by fake makeup (draw).
 Current test accuracy is 70~80%.
 The predictive performance of the model is shown below.
-![model_output](./model_output_sample.png)
+![model_output](model_output_sample.png)
 
 ## Method used
 Please execute the following code and install the necessary libraries.
