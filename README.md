@@ -4,7 +4,7 @@ I was inspired by Detective Conan to create this.\
 [名探偵コナンから紅の恋歌](https://ja.wikipedia.org/wiki/%E5%90%8D%E6%8E%A2%E5%81%B5%E3%82%B3%E3%83%8A%E3%83%B3_%E3%81%8B%E3%82%89%E7%B4%85%E3%81%AE%E6%81%8B%E6%AD%8C)
 
 ## System Details
-This system identifies the type of bloodstain.\
+This system identifies the type of bloodstain.
 It uses a CNN model to perform image classification.\
 Since there are no images of bloodstains, we created a pseudo-dataset using images of paint and Halloween makeup to train the system.\
 Like in the movie, we classify images with blood dripping (rain) and images with blood smudged by fake makeup (draw).
