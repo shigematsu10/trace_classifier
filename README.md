@@ -9,7 +9,7 @@ It uses a CNN model to perform image classification.\
 Since there are no images of bloodstains, we created a pseudo-dataset using images of paint and Halloween makeup to train the system.\
 Like in the movie, we classify images with blood dripping (rain) and images with blood smudged by fake makeup (draw).
 Current test accuracy is 70~80%.
-The predictive performance of the model is shown below.
+The prediction performance of the model on randomly selected test data is shown below. The blue text indicates the correctly determined images, and the red text indicates the incorrectly determined images.
 ![model_output](model_output_sapmle.png)
 
 ## Method used
